@@ -18,4 +18,3 @@ if __name__ == "__main__":
         for dependent_col in c.PUBLIC_COLUMN:            
             l, p, k, s = correlation_spread(residual_df, independent_col, dependent_col)    
             
-    
