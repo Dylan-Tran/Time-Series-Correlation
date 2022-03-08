@@ -8,11 +8,9 @@ if __name__ == "__main__":
     original_df = aggregate_CSV_files()
     residual_df = aggregate_residual(original_df)
     
-# =============================================================================
-#     plot_df(original_df, "Original data")
-#     plot_df(residual_df, "Residual data")
-#     
-# =============================================================================
+    plot_df(original_df, "Original data")
+    plot_df(residual_df, "Residual data")
+    
     
     for independent_col in c.PRIVATE_COLUMN:
         for dependent_col in c.PUBLIC_COLUMN:            
