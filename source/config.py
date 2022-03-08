@@ -33,6 +33,6 @@ PERIOD_DICTIONARY = {
     "NASDAQ Close": None
 }
 
-START_DATE = pd.to_datetime("2010-12", format='%Y-%m')
+START_DATE = pd.to_datetime("2010-11", format='%Y-%m')
 
 BOUND_FACTOR = .75
