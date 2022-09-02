@@ -4,11 +4,14 @@ data folder and the `source.config.py` note that the `PERIOD_DICTIONARY` is in m
 
 
 ## Source file description
-    ### `config.py` - config file for inputing data and hyperparameter.
-    ### `aggregate_data.py` - perform aggregate functions like collecting all the
-    data into a single dataframe, or calculating the residual. 
-    ### `plotting_tools.py` - plotting functions
-    ### `statistical_tool.py` - calculate statistics
+
+`config.py` - config file for inputing data and hyperparameter.
+
+`aggregate_data.py` - perform aggregate functions like collecting all the data into a single dataframe, or calculating the residual. 
+
+`plotting_tools.py` - plotting functions
+
+`statistical_tool.py` - calculate statistics
 
 
     
