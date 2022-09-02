@@ -78,24 +78,21 @@ def correlation_spread(indicating_series, dependent_series):
     leading_bound = (int) (delta_leading.days // delta_period.days * c.BOUND_FACTOR)
  
     lag_shift = []
-    pearson_arr = []
-    kendall_arr = []
-    spearman_arr = []
+    
+    coefficient_arr = [[], [], []]
+    coefficient_fun = [get_pearson_coefficient, 
+                       get_kendall_coefficient, 
+                       get_spearman_coefficient]
+    
     for interval_shift in range(lagging_bound, leading_bound):
         delta_days = interval_shift * delta_period.days
         lag_shift.append(delta_days)
-        pearson_arr.append(
-            get_pearson_coefficient(indicating_series, dependent_series, delta_days)
-        )
-        
-        kendall_arr.append(
-            get_kendall_coefficient(indicating_series, dependent_series, delta_days)
-        )
-        
-        spearman_arr.append(
-            get_spearman_coefficient(indicating_series, dependent_series, delta_days)
-        )
-    return (lag_shift, pearson_arr, kendall_arr, spearman_arr)
+        for idx, fun in enumerate(coefficient_fun):
+            coefficient_arr[idx].append(
+                fun(indicating_series, dependent_series, delta_days)
+                )
+            
+    return (lag_shift, coefficient_arr[0], coefficient_arr[1], coefficient_arr[2])
     
 # =============================================================================
 # Tools for analysis
@@ -140,7 +137,6 @@ def get_lagged_correlation_coefficient_helper(
     time_series_2.dropna(inplace=True)
     shift_df = time_series_1.shift(lag_time, freq="D")
     if time_series_2.index[-1] < shift_df.index[0]:
-        print("Hit")
         return None
     else:        
         merge_df = pd.concat([shift_df, time_series_2], sort=True, axis=1)
